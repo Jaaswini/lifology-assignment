@@ -1,7 +1,7 @@
 import { getUserPosts } from "@/services/api/getUserPost"
 import { styles } from "./styles"
 import React, { useEffect, useState } from "react"
-import { View, FlatList, TouchableOpacity } from "react-native"
+import { View, FlatList } from "react-native"
 import PostCard from "components/PostCard"
 import NoData from "components/NoData"
 import Loading from "components/Loading"
@@ -43,9 +43,9 @@ const UserDetailScreen = (route: any, navigation: any) => {
           data={posts}
           keyExtractor={(data) => data.id}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.card}>
+            <View style={styles.card}>
               <PostCard data={item} />
-            </TouchableOpacity>
+            </View>
           )}
           ListEmptyComponent={() => <NoData />}
           showsVerticalScrollIndicator={false}
