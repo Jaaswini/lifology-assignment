@@ -36,7 +36,7 @@ const UserDetailScreen = (route: any, navigation: any) => {
     <View style={styles.container}>
       {loading ? (
         <Loading />
-      ) : !error ? (
+      ) : error ? (
         <Error onClick={() => getDataFromApi()} />
       ) : (
         <FlatList
