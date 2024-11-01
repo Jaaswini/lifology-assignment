@@ -7,7 +7,7 @@ const UserCard = (props: any) => {
   return (
     <View style={[styles.userCardContainer, styles.row, styles.alignCenter]}>
       <Image style={styles.profileImg} source={{ uri: data?.image }} />
-      <View style={styles.textContainer}>
+      <View>
         <Text style={[styles.lgText, styles.semiBold]}>{data?.firstName}</Text>
         <Text style={[styles.grayText, styles.mdText]}>{data?.role}</Text>
         <Text style={[styles.grayText, styles.mdText]}>{data?.email}</Text>

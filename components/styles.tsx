@@ -29,7 +29,6 @@ export const styles = StyleSheet.create({
     width: 50,
     borderRadius: 50,
   },
-  textContainer: {},
   smText: {
     fontSize: 12,
   },
@@ -76,5 +75,10 @@ export const styles = StyleSheet.create({
   },
   fullHeight: {
     height: "100%",
+  },
+  btn: {
+    padding: 10,
+    backgroundColor: "#758694",
+    borderRadius: 10,
   },
 })
