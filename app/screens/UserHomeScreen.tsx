@@ -1,36 +1,53 @@
 import { useEffect, useState } from "react"
-import { View, Text, TouchableOpacity } from "react-native"
+import { View, TouchableOpacity, FlatList, Text, ActivityIndicator } from "react-native"
 import { getUsers } from "@/services/api/getUsers"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
+import UserCard from "components/UserCard"
+import { styles } from "./styles"
+import NoData from "components/NoData"
+import Loading from "components/Loading"
 
 export const WelcomeScreen = ({ navigation }: { navigation: NativeStackNavigationProp<any> }) => {
   const [data, setData] = useState<any>([])
+  const [loading, setLoading] = useState<Boolean>(true)
   const { users } = data || []
   useEffect(() => {
     getDataFromApi()
   }, [])
-  console.log("check data", data)
   const getDataFromApi = async () => {
     try {
       const data: any = await getUsers()
-      console.log("data inside", data.status)
       if (data.status === "SUCCESS") {
         setData(data?.data)
+        setLoading(false)
       } else {
-        console.log("error isnide", data)
+        setLoading(false)
       }
     } catch (error) {
-      console.log("error while calling function")
+      setLoading(false)
     }
   }
 
   return (
-    <View>
-      {users?.map((item: any) => (
-        <TouchableOpacity onPress={() => navigation.navigate("UserDetailScreen")}>
-          <Text>{item?.firstName}</Text>
-        </TouchableOpacity>
-      ))}
+    <View style={styles.container}>
+      {loading ? (
+        <Loading />
+      ) : (
+        <FlatList
+          data={users}
+          keyExtractor={(data) => data.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.card}
+              onPress={() => navigation.navigate("UserDetailScreen", { id: item?.id })}
+            >
+              <UserCard data={item} />
+            </TouchableOpacity>
+          )}
+          showsVerticalScrollIndicator={false}
+          ListEmptyComponent={() => <NoData />}
+        />
+      )}
     </View>
   )
 }

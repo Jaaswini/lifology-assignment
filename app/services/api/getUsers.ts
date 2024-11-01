@@ -6,10 +6,8 @@ export async function getUsers() {
   try {
     const response = await axios.get(url)
 
-    console.log("dataaaaaaa res", response)
     return { status: "SUCCESS", data: response.data }
   } catch (error) {
-    console.log("rror while fetching user details", error)
     return { status: "FAILURE", data: error }
   }
 }
