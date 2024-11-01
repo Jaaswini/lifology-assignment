@@ -2,12 +2,12 @@ import { getUserPosts } from "@/services/api/getUserPost"
 import { styles } from "./styles"
 import React, { useEffect, useState } from "react"
 import { View, FlatList } from "react-native"
-import PostCard from "components/PostCard"
-import NoData from "components/NoData"
-import Loading from "components/Loading"
-import Error from "components/Error"
-const UserDetailScreen = (route: any, navigation: any) => {
-  console.log("routeee", route)
+import PostCard from "@/components/PostCard"
+import NoData from "@/components/NoData"
+import Loading from "@/components/Loading"
+import Error from "@/components/Error"
+import { SUCCESS } from "@/assets/constants"
+export const UserDetailScreen = (route: any) => {
   const { id } = route?.route?.params || ""
   const [data, setData] = useState<any>([])
   const [loading, setLoading] = useState<Boolean>(true)
@@ -19,7 +19,7 @@ const UserDetailScreen = (route: any, navigation: any) => {
   const getDataFromApi = async () => {
     try {
       const data: any = await getUserPosts(id)
-      if (data.status === "SUCCESS") {
+      if (data.status === SUCCESS) {
         setData(data?.data)
         setLoading(false)
       } else {
@@ -54,5 +54,3 @@ const UserDetailScreen = (route: any, navigation: any) => {
     </View>
   )
 }
-
-export default UserDetailScreen

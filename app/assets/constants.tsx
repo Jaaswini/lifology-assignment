@@ -1,0 +1,6 @@
+export const SUCCESS = "SUCCESS"
+export const FAILURE = "FAILURE"
+export const ERROR_MSG = "Something went wrong"
+export const PLS_TRY_AGAIN = "Click here to reload"
+export const USER_DETAIL_SCREEN = "UserDetailScreen"
+export const USER_HOME_SCREEN = "UserHomeScreen"
